@@ -19,8 +19,6 @@ event_json = {
 for x in range(24):
     file_name = "out_by_app_f1_" + str(x) + ".csv"
     print(file_name)
-
-    start_time = start_time + 3600
     print(start_time)
 
     with open(file_name, "r") as ins:
@@ -89,3 +87,5 @@ for x in range(24):
                     print(mqtt_topic_event + "f3_" + line.strip().split(':')[0])
                     print(event_json)
                     #print(line.strip())
+
+    start_time = start_time + 3600
