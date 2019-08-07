@@ -29,11 +29,10 @@ for x in range(24):
                 if "Energy" in line:
                     energy_json["timestamp"] = start_time
                     energy_json["measurements"] = [float(line.strip().split(':')[1])]
-                    #print(mqtt_topic + "f1_" + "energy")
-                    #print(energy_json)
+                    print(mqtt_topic + "f1_" + "energy")
+                    print(energy_json)
                     #print(line.strip())
                 else:
-                    # TODO event json
                     l = line.strip().split(':')
                     event = l[0]
                     d = l[1].split(',')
@@ -41,9 +40,9 @@ for x in range(24):
                     event_json["timestamp"] = int(int(d[0])/1000)
                     event_json["measurements"] = [ {"deltaP": float(d[1]), "deltaQ": float(d[2])} ] 
 
-                    print(mqtt_topic_event + line.strip().split(':')[0])
+                    print(mqtt_topic_event + "f1_" + line.strip().split(':')[0])
                     print(event_json)
-                    print(line.strip())
+                    #print(line.strip())
 
     file_name = "out_by_app_f2_" + str(x) + ".csv"
 
@@ -53,11 +52,20 @@ for x in range(24):
                 if "Energy" in line:
                     energy_json["timestamp"] = start_time
                     energy_json["measurements"] = [float(line.strip().split(':')[1])]
-                    #print(mqtt_topic + "f2_" + "energy")
-                    #print(energy_json)
+                    print(mqtt_topic + "f2_" + "energy")
+                    print(energy_json)
                     #print(line.strip())
                 else:
-                    print(line.strip())
+                    l = line.strip().split(':')
+                    event = l[0]
+                    d = l[1].split(',')
+
+                    event_json["timestamp"] = int(int(d[0])/1000)
+                    event_json["measurements"] = [ {"deltaP": float(d[1]), "deltaQ": float(d[2])} ] 
+
+                    print(mqtt_topic_event + "f2_" + line.strip().split(':')[0])
+                    print(event_json)
+                    #print(line.strip())
 
     file_name = "out_by_app_f3_" + str(x) + ".csv"
 
@@ -67,8 +75,17 @@ for x in range(24):
                 if "Energy" in line:
                     energy_json["timestamp"] = start_time
                     energy_json["measurements"] = [float(line.strip().split(':')[1])]
-                    #print(mqtt_topic + "f3_" + "energy")
-                    #print(energy_json)
+                    print(mqtt_topic + "f3_" + "energy")
+                    print(energy_json)
                     #print(line.strip())
                 else:
-                    print(line.strip())
+                    l = line.strip().split(':')
+                    event = l[0]
+                    d = l[1].split(',')
+
+                    event_json["timestamp"] = int(int(d[0])/1000)
+                    event_json["measurements"] = [ {"deltaP": float(d[1]), "deltaQ": float(d[2])} ] 
+
+                    print(mqtt_topic_event + "f3_" + line.strip().split(':')[0])
+                    print(event_json)
+                    #print(line.strip())
