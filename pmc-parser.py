@@ -4,14 +4,14 @@ import paho.mqtt.client as mqtt
 client = mqtt.Client()
 client.connect("localhost")
 
-start_time = 1559001600
+start_time = 1559001600000
 
 mqtt_topic = "saam/data/mihas/sens_power_"
 mqtt_topic_event = "saam/data/mihas/sens_power_event_"
 
 energy_json = {
             "timestamp": 12345566,
-            "timestep": 3600,
+            "timestep": 3600000,
             "measurements": [ 234.5 ]
             }
 
@@ -41,7 +41,7 @@ for x in range(24):
                     event = l[0]
                     d = l[1].split(',')
 
-                    event_json["timestamp"] = int(int(d[0])/1000)
+                    event_json["timestamp"] = int(d[0])
                     event_json["measurements"] = [ {"dP": float(d[1]), "dQ": float(d[2])} ] 
 
                     t = mqtt_topic_event + "f1_" + line.strip().split(':')[0]
@@ -68,7 +68,7 @@ for x in range(24):
                     event = l[0]
                     d = l[1].split(',')
 
-                    event_json["timestamp"] = int(int(d[0])/1000)
+                    event_json["timestamp"] = int(d[0])
                     event_json["measurements"] = [ {"dP": float(d[1]), "dQ": float(d[2])} ] 
 
                     t = mqtt_topic_event + "f2_" + line.strip().split(':')[0]
@@ -95,7 +95,7 @@ for x in range(24):
                     event = l[0]
                     d = l[1].split(',')
 
-                    event_json["timestamp"] = int(int(d[0])/1000)
+                    event_json["timestamp"] = int(d[0])
                     event_json["measurements"] = [ {"dP": float(d[1]), "dQ": float(d[2])} ] 
 
                     t = mqtt_topic_event + "f3_" + line.strip().split(':')[0]
@@ -103,4 +103,4 @@ for x in range(24):
                     print(json.dumps(event_json))
                     client.publish(topic=t, payload=json.dumps(event_json))
 
-    start_time = start_time + 3600
+    start_time = start_time + 3600000
