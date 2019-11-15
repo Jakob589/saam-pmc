@@ -2,7 +2,12 @@ import json
 import paho.mqtt.client as mqtt
 
 client = mqtt.Client()
-client.connect("localhost")
+client.username_pw_set("user", "pass")
+client.tls_set(ca_certs="cert/ca_certificate.pem",
+                certfile="cert/client_certificate.pem",
+                keyfile="cert/client_key.pem")
+client.tls_insecure_set(True)
+client.connect("example.com", 8883)
 
 start_time = 1559001600000
 
