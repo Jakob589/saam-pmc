@@ -6,7 +6,7 @@ import time
 import os
 
 client = mqtt.Client()
-client.username_pw_set("DeviceUser", "b9BpukeK") ## add password
+client.username_pw_set("", "") ## add password
 client.tls_set(ca_certs="/opt/cert/ca_certificate.pem",
                 certfile="/opt/cert/client_certificate.pem",
                 keyfile="/opt/cert/client_key.pem")
